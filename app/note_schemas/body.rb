@@ -4,7 +4,7 @@
 class Body
   attr_accessor :time, :blocks, :version
 
-  def initialize(time: Time.now, blocks: [], version: '2.8.1')
+  def initialize(time: Time.now.to_i, blocks: [], version: '2.8.1')
     @time = time
     @blocks = blocks
     @version = version
