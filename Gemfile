@@ -27,4 +27,5 @@ group :development do
   gem 'solargraph'
 end
 
+gem 'bcrypt', '~> 3.1'
 gem 'mongoid', '~> 7.3.4'
