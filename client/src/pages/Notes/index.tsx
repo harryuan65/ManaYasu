@@ -5,4 +5,4 @@ const IndexPage = () => {
   return <p>Hello Note Index Page</p>;
 };
 
-export default Layout(IndexPage);
+export default IndexPage;

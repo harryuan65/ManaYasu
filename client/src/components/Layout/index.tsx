@@ -1,10 +1,10 @@
-import { notes_path, quizzes_path } from '@/routes';
-import { Link } from '@inertiajs/inertia-react';
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { ReactComponent as Logo } from '../../assets/images/Ma.svg';
-import { ReactComponent as Note } from '../../assets/images/Note.svg';
-import { ReactComponent as Quiz } from '../../assets/images/Quiz.svg';
+import Logo from '../../assets/images/Ma.jsx';
+import Note from '../../assets/images/Note.jsx';
+import Quiz from '../../assets/images/Quiz.jsx';
+import { nanoid } from 'nanoid';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -55,14 +55,16 @@ const NavItem = styled.li`
 
 const NavLink = ({
   href = '',
+  active = false,
   children,
 }: {
   href: string;
+  active?: boolean;
   children: React.ReactChild[];
 }) => {
   return (
-    <NavItem $active={window.location.pathname === href}>
-      <Link href={href}>{children}</Link>
+    <NavItem $active={active}>
+      <Link to={href}>{children}</Link>
     </NavItem>
   );
 };
@@ -78,30 +80,47 @@ const Divider = styled.hr`
   margin: 0;
 `;
 
-const Layout = (Component: React.FC): React.ReactNode => {
-  return (props = {}) => (
-    <LayoutContainer>
-      <NavBar>
-        <NavTop>
-          <Logo style={{ width: 30, height: 30 }} />
-        </NavTop>
-        <Divider />
-        <NavLinks>
-          <NavLink href={notes_path()}>
-            <Note />
-            筆記
-          </NavLink>
-          <NavLink href={quizzes_path()}>
-            <Quiz />
-            題目
-          </NavLink>
-        </NavLinks>
-      </NavBar>
-      <Content>
-        <Component {...props} />
-      </Content>
-    </LayoutContainer>
-  );
+const Links = [
+  {
+    href: '/notes',
+    icon: <Note />,
+    text: '筆記',
+  },
+  {
+    href: '/quizzes',
+    icon: <Quiz />,
+    text: '題目',
+  },
+];
+const Layout = (Component: React.FC): React.FunctionComponent => {
+  return (props = {}) => {
+    const { pathname } = useLocation();
+    return (
+      <LayoutContainer>
+        <NavBar>
+          <NavTop>
+            <Logo style={{ width: 30, height: 30 }} />
+          </NavTop>
+          <Divider />
+          <NavLinks>
+            {Links.map((link) => (
+              <NavLink
+                key={nanoid()}
+                href={link.href}
+                active={link.href === pathname}
+              >
+                {link.icon}
+                {link.text}
+              </NavLink>
+            ))}
+          </NavLinks>
+        </NavBar>
+        <Content>
+          <Component {...props} />
+        </Content>
+      </LayoutContainer>
+    );
+  };
 };
 
 export default Layout;
