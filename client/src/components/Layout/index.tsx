@@ -1,35 +1,35 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import Logo from '../../assets/images/Ma.jsx';
-import Note from '../../assets/images/Note.jsx';
-import Quiz from '../../assets/images/Quiz.jsx';
-import { nanoid } from 'nanoid';
+import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
+import Logo from '../../assets/images/Ma.jsx'
+import Note from '../../assets/images/Note.jsx'
+import Quiz from '../../assets/images/Quiz.jsx'
+import { nanoid } from 'nanoid'
 
 const LayoutContainer = styled.div`
   display: flex;
   height: 100vh;
   max-width: 100%;
   overflow-x: hidden;
-`;
+`
 
 const NavBar = styled.div`
   width: 240px;
   height: 100%;
   background-color: #fbfbfb;
   box-shadow: 0px 0px 6px #cdcdcd;
-`;
+`
 
 const NavTop = styled.div`
   padding: 12px;
   display: flex;
   align-items: center;
-`;
+`
 
 const NavLinks = styled.ul`
   padding: 12px;
   list-style: none;
-`;
+`
 
 const NavItem = styled.li`
   cursor: pointer;
@@ -51,12 +51,12 @@ const NavItem = styled.li`
       /* height: 20px; */
     }
   }
-`;
+`
 
 const NavLink = ({
   href = '',
   active = false,
-  children,
+  children
 }: {
   href: string;
   active?: boolean;
@@ -66,40 +66,43 @@ const NavLink = ({
     <NavItem $active={active}>
       <Link to={href}>{children}</Link>
     </NavItem>
-  );
-};
+  )
+}
 
 const Content = styled.div`
   padding: 30px;
   width: 100%;
   height: 100%;
-`;
+`
 
 const Divider = styled.hr`
   border: 1px solid #e7e7e7;
   margin: 0;
-`;
+`
 
 const Links = [
   {
     href: '/notes',
     icon: <Note />,
-    text: '筆記',
+    text: '筆記'
   },
   {
     href: '/quizzes',
     icon: <Quiz />,
-    text: '題目',
-  },
-];
+    text: '題目'
+  }
+]
+
 const Layout = (Component: React.FC): React.FunctionComponent => {
   return (props = {}) => {
-    const { pathname } = useLocation();
+    const { pathname } = useLocation()
     return (
       <LayoutContainer>
         <NavBar>
           <NavTop>
-            <Logo style={{ width: 30, height: 30 }} />
+            <Link to="/">
+              <Logo style={{ width: 30, height: 30 }} />
+            </Link>
           </NavTop>
           <Divider />
           <NavLinks>
@@ -119,8 +122,8 @@ const Layout = (Component: React.FC): React.FunctionComponent => {
           <Component {...props} />
         </Content>
       </LayoutContainer>
-    );
-  };
-};
+    )
+  }
+}
 
-export default Layout;
+export default Layout
