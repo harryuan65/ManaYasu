@@ -15,6 +15,8 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     'no-use-before-define': 'off',
-    'react/display-name': [0, { ignoreTranspilerName: 0 }]
+    'react/display-name': [0, { ignoreTranspilerName: 0 }],
+    semi: 'off',
+    'comma-dangle': 'off'
   }
 }
