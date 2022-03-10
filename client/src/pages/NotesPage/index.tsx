@@ -1,7 +1,7 @@
 import React from 'react'
 
-const IndexPage = () => {
+const NotesPage = () => {
   return <p>Hello Note Index Page</p>
 }
 
-export default IndexPage
+export default NotesPage
