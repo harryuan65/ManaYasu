@@ -1,8 +1,24 @@
+/* @font-face {
+  font-family: 'MP1C-Regular';
+  src: url('./assets/fonts/MPLUS1Code-Regular.ttf');
+}
+@font-face {
+  font-family: 'MP1C-Bold';
+  src: url('./assets/fonts/MPLUS1Code-Bold.ttf');
+} */
+@font-face {
+  font-family: 'MPR1C-Regular';
+  src: url('./assets/fonts/MPLUSRounded1c-Regular.ttf');
+}
+@font-face {
+  font-family: 'MPR1C-Bold';
+  src: url('./assets/fonts/MPLUSRounded1c-Bold.ttf');
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'MPR1C-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
