@@ -12,7 +12,7 @@ import Marker from '@editorjs/marker';
 import CheckList from '@editorjs/checklist';
 import Delimiter from '@editorjs/delimiter';
 import InlineCode from '@editorjs/inline-code';
-import SimpleImage from '@editorjs/simple-image';
+import Ruby from 'ruby-annotation';
 
 export const EDITOR_JS_TOOLS = {
   warning: Warning,
@@ -21,10 +21,6 @@ export const EDITOR_JS_TOOLS = {
   raw: Raw,
   quote: Quote,
   checkList: CheckList,
-  image: {
-    class: SimpleImage,
-    inlineToolbar: ['link', 'bold'],
-  },
   delimiter: Delimiter,
   inlineCode: InlineCode,
   header: {
@@ -35,19 +31,13 @@ export const EDITOR_JS_TOOLS = {
       levels: [2, 3, 4],
       defaultLevel: 2,
     },
-    // tunes: ['footnotes'],
   },
   list: {
     class: List,
-    // tunes: ['footnotes'],
-  },
-  paragraph: {
-    // tunes: ['footnotes'],
   },
   table: {
     class: Table,
     inlineToolbar: true,
-    // tunes: ['footnotes'],
   },
   Marker: {
     class: Marker,
@@ -56,4 +46,5 @@ export const EDITOR_JS_TOOLS = {
   embed: {
     class: Embed,
   },
+  ruby: Ruby,
 };
