@@ -10,7 +10,7 @@ import NoteSideBar from '../NoteSideBar';
 import QuizSideBar from '../QuizSideBar';
 
 const NavBarContainer = styled.div`
-  width: 480px;
+  width: 320px;
   height: 100%;
   background-color: #fbfbfb;
   box-shadow: 0px 0px 6px #cdcdcd;

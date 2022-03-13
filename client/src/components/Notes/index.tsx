@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Themes from '../../themes/default';
 import { FakeAPI } from '../../utils/api_mock';
@@ -22,9 +22,10 @@ const NoteTag = styled.span`
   padding: 3px 7px;
   font-size: 16px;
   margin-left: 6px;
+  white-space: nowrap;
 `;
 
-const NoteItem = styled.li`
+const NoteItem = styled(Link)`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -41,6 +42,16 @@ const NoteItem = styled.li`
   &:hover {
     transition: background-color 0.1s ease-in;
     background-color: ${Themes.background.hoverListItem};
+  }
+
+  &:active {
+    transition: background-color 0.1s ease-in;
+    background-color: ${Themes.background.activeListItem};
+  }
+
+  &:link,
+  &:visited {
+    text-decoration: none;
   }
 `;
 
@@ -59,22 +70,6 @@ const Notes = () => {
   const [notes, setNotes] = useState<NoteInfo[]>([]);
   const [loading, setLoading] = useState(true);
   const { pathname } = useLocation();
-  // const getNotes = async () => {
-  //   return new Promise<NoteInfo[]>((resolve, reject) => {
-  //     setTimeout(() => {
-  //       resolve(
-  //         Array(5)
-  //           .fill(null)
-  //           .map((_, i) => {
-  //             return {
-  //               id: i + 1,
-  //               title: `我的筆記:日本常見的三餐三餐三餐有哪些${i}`,
-  //             };
-  //           })
-  //       );
-  //     }, 1000);
-  //   });
-  // };
 
   useEffect(() => {
     (async () => {
@@ -104,7 +99,11 @@ const Notes = () => {
   let renderContent = [<p key={nanoid()}>Loading</p>];
   if (!loading) {
     renderContent = notes.map((note) => (
-      <NoteItem key={nanoid()} $active={isActiveNote(String(note.id))}>
+      <NoteItem
+        to={`/notes/${note.id}`}
+        key={nanoid()}
+        $active={isActiveNote(String(note.id))}
+      >
         <NoteTag>綜合</NoteTag>
         <NoteText>{note.title}</NoteText>
       </NoteItem>
