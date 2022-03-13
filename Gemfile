@@ -26,6 +26,7 @@ group :development do
   gem 'rubocop-rails'
   gem 'solargraph'
   gem 'sorted_set'
+  gem 'reek'
 end
 
 gem 'bcrypt', '~> 3.1'
