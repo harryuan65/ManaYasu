@@ -1,26 +1,29 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../assets/images/Ma.jsx';
 import Note from '../../assets/images/Note.jsx';
 import Quiz from '../../assets/images/Quiz.jsx';
 import { nanoid } from 'nanoid';
+import { NAV_PADDING } from '../../utils/constants.js';
+import NoteSideBar from '../NoteSideBar';
+import QuizSideBar from '../QuizSideBar';
 
 const NavBarContainer = styled.div`
-  width: 240px;
+  width: 480px;
   height: 100%;
   background-color: #fbfbfb;
   box-shadow: 0px 0px 6px #cdcdcd;
 `;
 
 const NavTop = styled.div`
-  padding: 12px;
+  padding: ${NAV_PADDING}px;
   display: flex;
   align-items: center;
 `;
 
 const NavLinks = styled.ul`
-  padding: 12px;
+  padding: 5px ${NAV_PADDING}px;
   list-style: none;
 `;
 
@@ -30,7 +33,7 @@ const NavItem = styled.li`
     display: grid;
     align-items: center;
     grid-template-columns: 30px 1fr;
-    font-size: 20px;
+    font-size: 22px;
     text-decoration: none;
     color: ${(props: { $active?: boolean }) =>
       props.$active ? '#2d3535' : '#a8a8a8'};
@@ -100,6 +103,11 @@ const NavBar = () => {
           </NavLink>
         ))}
       </NavLinks>
+      <Divider />
+      <Routes>
+        <Route path="/notes/*" element={<NoteSideBar />} />
+        <Route path="/quizzes/*" element={<QuizSideBar />} />
+      </Routes>
     </NavBarContainer>
   );
 };
