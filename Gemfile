@@ -25,9 +25,14 @@ end
 group :development do
   gem 'rubocop-rails'
   gem 'solargraph'
+  gem 'annotate'
   gem 'sorted_set'
   gem 'reek'
 end
 
 gem 'bcrypt', '~> 3.1'
 gem 'mongoid', '~> 7.3.4'
+
+gem "alba", "~> 1.5"
+
+gem "oj", "~> 3.13"

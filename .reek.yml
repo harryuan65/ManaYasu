@@ -1,5 +1,5 @@
 directories:
-  "app/controllers":
+  "**/app/controllers":
     IrresponsibleModule:
       enabled: false
     NestedIterators:
@@ -8,14 +8,14 @@ directories:
       enabled: false
     InstanceVariableAssumption:
       enabled: false
-  "app/helpers":
+  "**/app/helpers":
     IrresponsibleModule:
       enabled: false
     UtilityFunction:
       enabled: false
-  "app/mailers":
+  "**/app/mailers":
     InstanceVariableAssumption:
       enabled: false
-  "app/models":
+  "**/app/models":
     InstanceVariableAssumption:
       enabled: false

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Body of a Note
-class Body
-  attr_accessor :time, :blocks, :version
+class NoteBody
+  attr_reader :time, :blocks, :version
 
   def initialize(time: Time.now.to_i, blocks: [], version: '2.8.1')
     @time = time
@@ -18,9 +18,13 @@ class Body
     }
   end
 
+  def to_json(*_args)
+    mongoize
+  end
+
   class << self
     def demongoize(obj)
-      new(**obj)
+      new(**obj.symbolize_keys)
     end
 
     def mongoize(obj)
@@ -28,7 +32,7 @@ class Body
       when Body
         obj.mongoize
       when Hash
-        new(**obj).mongoize
+        new(**obj.symbolize_keys).mongoize
       else
         pp obj
         raise 'Unknown obj type'

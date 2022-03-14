@@ -66,6 +66,10 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    alba (1.5.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     backport (1.2.0)
     bcrypt (3.1.16)
@@ -131,6 +135,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.3-arm64-darwin)
       racc (~> 1.4)
+    oj (3.13.11)
     parallel (1.21.0)
     parser (3.1.1.0)
       ast (~> 2.4.1)
@@ -236,10 +241,13 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
+  alba (~> 1.5)
+  annotate
   bcrypt (~> 3.1)
   bootsnap
   debug
   mongoid (~> 7.3.4)
+  oj (~> 3.13)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.1)

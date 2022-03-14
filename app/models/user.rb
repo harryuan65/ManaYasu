@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 # Learners who take notes
-class User
+class User < Base
   include BCrypt
-  include Mongoid::Document
-  include Mongoid::Timestamps
 
   field :email, type: String
   field :password_hash, type: String
