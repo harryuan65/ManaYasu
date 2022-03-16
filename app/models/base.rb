@@ -6,6 +6,14 @@ class Base
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  #
+  # Serialize mongo document instance
+  # Uses `#{ModelName}Resource` by default, can be override with custom serializer
+  #
+  # @param [#new, #serialize, NilClass] use_serializer <description>
+  #
+  # @return [String] serialized json string
+  #
   def serialize(use_serializer = nil)
     serializer = if use_serializer
                    use_serializer.new(self)

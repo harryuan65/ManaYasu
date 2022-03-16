@@ -11,9 +11,7 @@
 #   }
 # }
 # ```
-class ApiErrorMessageResource
-  include Alba::Resource
-
+class ApiErrorMessageResource < BaseResource
   key :error
 
   attribute :code do |resource|

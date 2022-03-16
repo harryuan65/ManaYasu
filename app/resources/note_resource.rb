@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 # Serializer for Note
-class NoteResource
-  include Alba::Resource
-
+class NoteResource < BaseResource
   attribute :_id do |resource|
     resource._id.to_s
   end
