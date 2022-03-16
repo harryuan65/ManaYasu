@@ -2,6 +2,8 @@
 
 # Notes crud
 class NotesController < ApplicationController
+  before_action :set_note, only: %i[create update]
+
   def index
     @notes = Note.all
     render json: @notes.map(&:serialize)
