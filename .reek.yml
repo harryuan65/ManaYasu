@@ -1,5 +1,5 @@
 directories:
-  "**/app/controllers":
+  "**/app/controllers/api":
     IrresponsibleModule:
       enabled: false
     NestedIterators:
