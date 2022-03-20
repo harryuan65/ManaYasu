@@ -30,9 +30,7 @@ group :development do
   gem 'reek'
 end
 
+gem 'alba', '~> 1.5'
 gem 'bcrypt', '~> 3.1'
 gem 'mongoid', '~> 7.3.4'
-
-gem "alba", "~> 1.5"
-
-gem "oj", "~> 3.13"
+gem 'oj', '~> 3.13'

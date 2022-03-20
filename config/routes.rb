@@ -2,5 +2,7 @@
 
 Rails.application.routes.draw do
   # root "articles#index"
-  resources :notes
+  namespace :api, defaults: { format: :json } do
+    resources :notes
+  end
 end
