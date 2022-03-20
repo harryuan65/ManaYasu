@@ -8,7 +8,5 @@ class NoteResource < BaseResource
 
   attributes :title
 
-  attribute :data do |resource|
-    resource.body.to_json
-  end
+  attributes :body
 end

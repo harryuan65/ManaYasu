@@ -6,7 +6,7 @@ class Note < Base
   validates_presence_of :body, on: :create, message: "can't be blank"
 
   field :title, type: String
-  field :body, type: NoteBody
+  field :body, type: Hash
 
   belongs_to :user
 end

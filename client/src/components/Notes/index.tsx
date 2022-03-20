@@ -1,13 +1,15 @@
+import { OutputData } from '@editorjs/editorjs';
 import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import APIManager from '../../api/APIManager';
 import Themes from '../../themes/default';
-import { FakeAPI } from '../../utils/api_mock';
 
 interface NoteInfo {
-  id: number;
+  _id: number;
   title: string;
+  data: OutputData;
 }
 
 const NotesList = styled.ul`
@@ -72,19 +74,14 @@ const Notes = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    (async () => {
-      const data = await FakeAPI<NoteInfo[]>(
-        Array(5)
-          .fill(null)
-          .map((_, i) => {
-            return {
-              id: i + 1,
-              title: `我的筆記:日本常見的三餐三餐三餐有哪些${i}`,
-            };
-          }),
-        3000
-      );
-      setNotes(data);
+    setLoading(true);
+    (async function () {
+      const response = await APIManager.Instance.get('/notes');
+      const data = response.data;
+      console.log(response.data);
+
+      const notesData = data.notes as NoteInfo[];
+      setNotes(notesData);
       setLoading(false);
     })();
   }, []);
@@ -100,9 +97,9 @@ const Notes = () => {
   if (!loading) {
     renderContent = notes.map((note) => (
       <NoteItem
-        to={`/notes/${note.id}`}
+        to={`/notes/${note._id}`}
         key={nanoid()}
-        $active={isActiveNote(String(note.id))}
+        $active={isActiveNote(String(note._id))}
       >
         <NoteTag>綜合</NoteTag>
         <NoteText>{note.title}</NoteText>

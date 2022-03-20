@@ -3,7 +3,7 @@
 module Api
   # Notes crud
   class NotesController < ApplicationController
-    before_action :set_note, only: %i[create update]
+    before_action :set_note, only: %i[show create update]
 
     def index
       notes = Note.all
@@ -11,8 +11,7 @@ module Api
     end
 
     def show
-      note = Note.find(params[:id])
-      render json: note.serialize
+      render json: @note.serialize
     end
 
     def create
@@ -25,21 +24,27 @@ module Api
     end
 
     def update
-      if @note.update(note_params)
+      if @note.update(body: note_params[:data].to_h)
         head :no_content
       else
         render_error :bad_request, @note.errors.full_messages.join
       end
     end
 
+    def check_params
+      render json: {
+        data: note_params.to_h
+      }
+    end
+
     private
 
     def set_note
-      @note = Note.find(params[:_id])
+      @note = Note.find(params[:id])
     end
 
     def note_params
-      params.permit(%i[_id created_at updated_at title body])
+      params.permit!
     end
   end
 end
