@@ -1,0 +1,2 @@
+client: yarn --cwd client dev
+web: bin/rails server -p 3001
